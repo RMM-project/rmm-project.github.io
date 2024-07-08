@@ -1,7 +1,22 @@
-# Site settings
+---
 title: RMM
 author:
-  name:Arjan Onwezen
-description: Remote Management and Monitoring tools overview
+  name: Arjan Onwezen
+description: "Remote Management and Monitoring tools overview."  
+exclude: ['/Gemfile', '/Makefile', '/README.md', '/NOTICE.md', 'LICENSE']
 
+permalink: pretty
+
+collections:
+  rmm:
+    output: true
+
+defaults:
+  - scope:
+      path: '_rmm'
+    values:
+      layout: 'rmm'
+    
+      
 # Build Settings
+#remote_theme: jekyll/minima

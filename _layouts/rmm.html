@@ -1,0 +1,115 @@
+---
+layout: common
+---
+
+{% include page_title.html title=page.Name %}
+
+<!-- author -->
+{% assign author = page.Author %}
+{% if author and author.size > 0 %}
+	<b>Author:</b> {{page.Author}} <br>
+{% endif %}	
+
+<!-- website -->
+{% assign website = page.Website %}
+{% if website and website.size > 0 %}
+	<b>Website:</b> {{page.Website}} <br>
+{% endif %}	
+
+<!-- description -->
+{% assign description = page.Description %}
+{% if description and description.size > 0 %}
+	{{ page.Description | markdownify }}		
+{% endif %}	
+
+<script src="{{ '/assets/url_helper.js' | relative_url }}"></script>
+<h1>Artifacts</h1>
+<!-- platforms -->
+{% assign platform = page.Platforms %}
+{% if platform and platform.size > 0 %}
+	{% for platform in page.Platforms %}
+		<h2>{{platform.Platform}}</h2>
+		{% assign privilege = platform.Privileges %}
+		{% if privilege and privilege.size > 0 %}
+			<b>Privileges:</b> {{platform.Privileges}} <br>
+		{% endif %}			
+		{% assign path = platform.Full_Path %}
+		{% if path and path.size > 0 %}
+		<b>Path(s):</b>
+			<ul>
+			{% for path in platform.Full_Path %}
+				<li>{{path.Path | replace:'\%','%'}}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+		{% assign reg = platform.Registry %}
+		{% if reg and reg.size > 0 %}
+		<b>Registry key(s):</b>
+			<ul>
+			{% for key in platform.Registry %}
+				<li>{{key.Key}}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	{% endfor %}
+{% endif %}
+
+<!-- domains -->
+{% assign domains = page.Domains %}
+{% if domains and domains.size > 0 %}
+<br>
+<h2>Domains</h2>
+<ul>
+	{% for domain in page.Domains %}
+		<li>{{domain.Domain| replace:'\*','*'}}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<!-- IPs -->
+{% assign ips = page.IPs %}
+{% if ips and ips.size > 0 %}
+<br>
+<h2>IPs</h2>
+<ul>
+	{% for ip in page.IPs %}
+		<li>{{ip.IP}}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<!-- Ports -->
+{% assign ports = page.Ports %}
+{% if ports and ports.size > 0 %}
+<br>
+<h2>Ports</h2>
+<ul>
+	{% for port in page.Ports %}
+		<li>{{port.Port}}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<!-- remediations -->
+{% assign remediations = page.Remediations %}
+{% if remediations and remediations.size > 0 %}
+<br>
+<h1>Remediation</h1>
+<ul>
+	{% for remediation in page.Remediations %}
+		{{remediation.Remediation | markdownify}}
+	{% endfor %}
+</ul>
+{% endif %}
+
+<!-- resources -->
+{% assign resources = page.Resources %}
+{% if resources and resources.size > 0 %}
+<br>
+<h2>Resources</h2>
+<ul>
+	{% for ent in page.Resources %}
+	<li><a href="{{ent.Link}}">{{ent.Link}}</a></li>
+	{% endfor %}
+</ul>
+{% endif %}

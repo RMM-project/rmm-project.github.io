@@ -1,0 +1,92 @@
+<input id="rmm-search" type="text" placeholder="Search among Remote Monitoring and Management (RMM) tools by name (e.g. 'TeamViewer') or ATT&CK info (e.g. 'T1219')"/>
+
+<div id="rmm-table-wrapper">
+    <table id="rmm-table">
+        <thead>
+            <tr>
+                <th style="width: 75%">Name</th>
+                <th style="width: 25%">ATT&CK&reg; Techniques</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in site.rmm %}
+            <tr>
+                <td><a href="{{ file.url | relative_url }}" class="rmm-name">{{ file.Name }}</a></td>
+                <td>{% include get_attack_tids.html rmm=file %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><td id="search-message" colspan="4">No matches…</td></tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+ function filter(query) {
+     // consistently update the URL
+     location.hash = query;
+
+     // determine the query type
+     var queryType = query[0];
+     if (queryType === '/' || queryType === '#') {
+         query = query.slice(1);
+     }
+
+     // filter rows
+     var noResults = true;
+     document.querySelectorAll('#rmm-table tbody tr').forEach(function (row) {
+         var rmmName = row.children[0].firstElementChild.innerText.toLowerCase();
+         var techniques = row.children[1].textContent.toLowerCase();
+         var against = rmmName + techniques;
+
+         if (against.indexOf(query) !== -1) {
+             row.style.display = '';
+             noResults = false;
+         } else {
+             row.style.display = 'none';
+         }
+     });
+
+     // update the search message visibility
+     var searchMessage = document.getElementById('search-message');
+     searchMessage.style.display = noResults ? 'table-cell' : 'none';
+ }
+
+ (function () {
+     var searchBox = document.getElementById('rmm-search');
+
+     // ensure height during filtering
+     var rmmTableWrapper = document.getElementById('rmm-table-wrapper');
+     rmmTableWrapper.style.height = rmmTableWrapper.clientHeight + 'px';
+
+     // handle user input
+     searchBox.addEventListener('input', function () {
+         var query = searchBox.value.toLowerCase().trim();
+         filter(query);
+     });
+
+     // handle shortcuts
+     addEventListener('keydown', function (event) {
+         // focus search box on valid keydown
+         if (event.key.toLowerCase().match(/^[\/a-z]$/) &&
+             !(event.ctrlKey || event.altKey || event.metaKey)) {
+             searchBox.focus();
+         }
+         // clear filter on escape
+         else if (event.key === 'Escape') {
+             searchBox.value = '';
+             searchBox.focus();
+             filter('');
+         }
+     });
+
+     // filter on load according to the URL
+     var query = decodeURIComponent(location.hash.slice(1));
+     filter(query);
+     if (query) {
+         searchBox.value = query;
+         searchBox.focus();
+     }
+ })();
+</script>
