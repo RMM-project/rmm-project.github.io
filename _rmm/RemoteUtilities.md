@@ -33,7 +33,8 @@ Remediations:
   - Remediation: Blocking `id.remoteutilities.com` blocks the connection to the internet relay server.
 Resources:
   - Link: https://ics-cert.kaspersky.com/media/TV_RMS_PHISHING_EN.pdf
-  - RMM
+Tags:
+  - RMM  
 Acknowledgement:
   - Person:
     Handle:

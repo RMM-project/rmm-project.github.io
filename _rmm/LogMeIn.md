@@ -24,6 +24,7 @@ Remediations:
   - Remediation: Blocking `*.123rescue.com`, `*.hamachi.cc`, `*.logme.in`, `*.internapcdn.net`, `*.logmein.com`, `*.logmeinrescue.com`, `*.logmeinrescue-enterprise.com` prevents LogMeIn connections and access to the product page.
 Resources:
   - Link: https://knowledge.broadcom.com/external/article/181241/how-to-block-logmein-with-edge-swg-black.html
+Tags:
   - RMM
 Acknowledgement:
   - Person:

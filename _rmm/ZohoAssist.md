@@ -21,6 +21,7 @@ Remediations:
   - Remediation: Blocking `*.zoho.com` and `*.zohoassist.com` prevents Zoho Assist connections and access to the product page.
 Resources:
   - Link: https://www.manageengine.com/mobile-device-management-msp/help/asset_management/mdm_remote_troubleshoot.html
+Tags:
   - RMM
 Acknowledgement:
   - Person:

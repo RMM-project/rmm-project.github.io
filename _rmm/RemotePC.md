@@ -5,31 +5,16 @@ Author: RemotePC
 Website: https://www.remotepc.com/
 Created: "2024-07-10"
 Platforms:
-  - Platform: Linux
-    Full_Path:
-      - Path: 
-      - Path: 	  
-    Privileges: User
-  - Platform: MacOS
-    Full_Path:
-      - Path: 
-      - Path: 	  
-    Privileges: User	
-  - Platform: Windows
-    Full_Path:
-      - Path: 
-      - Path: 	  
-    Privileges: User
-    Registry:
-      - Key: 
-      - Key: 
-      - Key: 
-      - Key: 	  
+  - Platform: Linux  
+    Privileges: 
+  - Platform: MacOS 	  
+    Privileges: 	
+  - Platform: Windows	  
+    Privileges: User	  
 MitreIDs:
   - MitreID: T1219
 Domains:
   - Domain: remotepc.com
-  - Domain: 
 Ports:
   - Port:443
 Detection:
@@ -39,6 +24,7 @@ Remediations:
   - Remediation: Blocking `*.remotepc.com` prevents RemotePC connections.
 Resources:
   - Link: https://www.remotedesktop.com/helpdesk/faq-firewall
+Tags:
   - RMM
 Acknowledgement:
   - Person:

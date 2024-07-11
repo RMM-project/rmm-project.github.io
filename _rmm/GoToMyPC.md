@@ -21,6 +21,7 @@ Remediations:
   - Remediation: ???
 Resources:
   - Link: https://community.cisco.com/t5/network-security/asa-5520-and-blocking-logmein-and-gotomypc/td-p/1529887
+Tags:
   - RMM
 Acknowledgement:
   - Person:
